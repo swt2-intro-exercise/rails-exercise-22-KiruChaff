@@ -10,4 +10,13 @@ describe "Author model", :type => :model do
     expect(author.last_name).to eq(last)
     expect(author.homepage).to eq(home)
   end
+
+  it "A 'name'-method should exist which returns the first and last name" do 
+    first = "Alan"
+    last = "Turing"
+    home = "http://wikipedia.org/Alan_Turing"
+    author = Author.new({:first_name => first, :last_name => last, :homepage => home})
+    expect(author.name).to eq("#{first} #{last}")
+  end
+
 end
