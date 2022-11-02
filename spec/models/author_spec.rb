@@ -19,4 +19,11 @@ describe "Author model", :type => :model do
     expect(author.name).to eq("#{first} #{last}")
   end
 
+  it "an author without a last name should be invalid" do 
+    first = "Alan"
+    home = "http://wikipedia.org/Alan_Turing"
+    author = Author.new({:first_name => first, :homepage => home})
+    expect(author).to_not be_valid
+  end
+
 end
