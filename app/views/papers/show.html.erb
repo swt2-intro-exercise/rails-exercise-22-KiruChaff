@@ -2,6 +2,17 @@
 
 <%= render @paper %>
 
+<div id="authors_of_paper">
+  <h2>
+    <%= pluralize(@paper.authors.count, "author")%>:
+  </h2>
+  <ul>
+    <%= @paper.authors.each do |author|%>
+      <li><%= author %></li>
+    <% end %>
+  </ul>
+</div>
+
 <div>
   <%= link_to "Edit this paper", edit_paper_path(@paper) %> |
   <%= link_to "Back to papers", papers_path %>
