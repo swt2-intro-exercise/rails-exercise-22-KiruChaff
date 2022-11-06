@@ -16,4 +16,10 @@ RSpec.describe Paper, type: :model do
     expect(paper4).to_not be_valid
     expect(paper5).to_not be_valid
   end
+
+  it "Papers and authors should have a HABTM relation" do
+    paper = Paper.new({:title => "title", :venue => "venue", :year => 2022})
+    
+    expect(paper.authors).to be_empty
+  end
 end
