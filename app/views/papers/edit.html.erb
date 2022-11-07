@@ -2,8 +2,57 @@
 
 <%= render "form", paper: @paper %>
 
+<%= form_with(model: @paper, local: true) do |form| %>
+
+    <% if @paper.errors.any? %>
+        <div id="error_explanation">
+            <h2>
+                <%= pluralize(@paper.errors.count, "error") %> prohibited
+                this article from being saved:
+            </h2>
+            <ul>
+                <% @paper.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <p>
+    <%= form.label :title %> </br>
+    <%= form.text_field :title%>
+    </p>
+
+    <p>
+    <%= form.label :venue %> </br>
+    <%= form.text_field :venue %>
+    </p>
+
+    <p>
+    <%= form.label :year %> </br>
+    <%= form.text_field :year %>
+    </p>
+
+    <p>
+      <%= form.label :authors %> </br>
+      <%= form.select 'author_ids',
+      options_from_collection_for_select(Author.all, :id, :name, @paper.author_ids),
+      {},
+      multiple: true, size: Author.all.count %>
+    </p>
+  
+    <p>
+    <%= form.submit %>
+    </p>
+<% end %>
+
+
+
 <br>
 
+
+
+Read more: https://html.com/attributes/select-multiple/#ixzz7jx0faGsR
 <div>
   <%= link_to "Show this paper", @paper %> |
   <%= link_to "Back to papers", papers_path %>
