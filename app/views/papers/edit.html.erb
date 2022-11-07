@@ -38,7 +38,7 @@
       <%= form.select 'author_ids',
       options_from_collection_for_select(Author.all, :id, :name, @paper.author_ids),
       {},
-      multiple: true, size: Author.all.count %>
+      multiple: true, size: Author.all.count, match: :first %>
     </p>
   
     <p>
